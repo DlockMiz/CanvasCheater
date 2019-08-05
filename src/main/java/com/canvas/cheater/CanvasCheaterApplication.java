@@ -1,13 +1,13 @@
-package project.school.springreacttemplate;
+package com.canvas.cheater;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringReactTemplateApplication {
+public class CanvasCheaterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringReactTemplateApplication.class, args);
+		SpringApplication.run(CanvasCheaterApplication.class, args);
 	}
 
 }
