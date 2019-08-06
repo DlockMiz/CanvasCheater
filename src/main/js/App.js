@@ -1,14 +1,13 @@
 import React from 'react';
-import './App.css';
+import Home from './components/Home'
+import {HashRouter} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Spring React Template :)
-        </p>
-      </header>
+        <HashRouter>
+            <Home></Home>
+        </HashRouter>
     </div>
   );
 }
