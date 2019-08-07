@@ -1,6 +1,9 @@
 package com.canvas.cheater.models;
 
+import com.canvas.cheater.models.assignment_models.ExternalToolTagAttributes;
 import com.canvas.cheater.models.assignment_models.LockInfo;
+import com.canvas.cheater.models.assignment_models.Rubric;
+import com.canvas.cheater.models.assignment_models.RubricSettings;
 
 import java.io.Serializable;
 
@@ -26,7 +29,7 @@ public class Assignment implements Serializable {
     private boolean vericite_enabled;
     private String turnitin_settings;
     private boolean grade_group_students_individually;
-    private String external_tool_tag_attributes;
+    private ExternalToolTagAttributes external_tool_tag_attributes;
     private boolean peer_reviews;
     private boolean automatic_peer_reviews;
     private long peer_review_count;
@@ -59,8 +62,8 @@ public class Assignment implements Serializable {
     private String[] frozen_attributes;
     private String submission;
     private boolean use_rubric_for_grading;
-    private String rubric_settings;
-    private String rubric;
+    private RubricSettings rubric_settings;
+    private Rubric[] rubric;
     private long[] assignment_visibility;
     private String overrides;
     private boolean omit_from_final_grade;
@@ -242,11 +245,11 @@ public class Assignment implements Serializable {
         this.grade_group_students_individually = grade_group_students_individually;
     }
 
-    public String getExternal_tool_tag_attributes() {
+    public ExternalToolTagAttributes getExternal_tool_tag_attributes() {
         return external_tool_tag_attributes;
     }
 
-    public void setExternal_tool_tag_attributes(String external_tool_tag_attributes) {
+    public void setExternal_tool_tag_attributes(ExternalToolTagAttributes external_tool_tag_attributes) {
         this.external_tool_tag_attributes = external_tool_tag_attributes;
     }
 
@@ -506,19 +509,19 @@ public class Assignment implements Serializable {
         this.use_rubric_for_grading = use_rubric_for_grading;
     }
 
-    public String getRubric_settings() {
+    public RubricSettings getRubric_settings() {
         return rubric_settings;
     }
 
-    public void setRubric_settings(String rubric_settings) {
+    public void setRubric_settings(RubricSettings rubric_settings) {
         this.rubric_settings = rubric_settings;
     }
 
-    public String getRubric() {
+    public Rubric[] getRubric() {
         return rubric;
     }
 
-    public void setRubric(String rubric) {
+    public void setRubric(Rubric[] rubric) {
         this.rubric = rubric;
     }
 

@@ -11,8 +11,8 @@ class Home extends Component {
                     <Navbar.Brand as={NavLink} to="/">Canvas Cheater</Navbar.Brand>
                     <Nav className="mr-auto">
                         <Nav.Link as={NavLink} to="/classes"> Classes</Nav.Link>
-                        <Nav.Link as={NavLink} to="/assignments"> Assignments</Nav.Link>
-                        <Nav.Link as={NavLink} to="/other"> Classes</Nav.Link>
+                        <Nav.Link as={NavLink} to="/assignments"> Other</Nav.Link>
+                        <Nav.Link as={NavLink} to="/other"> Other</Nav.Link>
                     </Nav>
                 </Navbar>
                 <Route path="/"/>

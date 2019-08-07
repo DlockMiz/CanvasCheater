@@ -2,8 +2,8 @@ package com.canvas.cheater.controllers;
 
 import com.canvas.cheater.canvas.CanvasClient;
 import com.canvas.cheater.models.Assignment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.canvas.cheater.models.Course;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CanvasController {
@@ -13,9 +13,14 @@ public class CanvasController {
         this.canvasClient = canvasClient;
     }
 
-    @GetMapping("/getAssignments")
-    public Assignment[] getAssignments(){
-        return canvasClient.getAllAssignmentsFromCourse();
+    @PostMapping(value = "/getAssignments")
+    public Assignment[] getAssignments(@RequestBody Course course){
+        return canvasClient.getAllAssignmentsFromCourse(course);
+    }
+
+    @GetMapping("/getCourses")
+    public Course[] getCourses(){
+        return canvasClient.getAllCourses();
     }
 
 }
