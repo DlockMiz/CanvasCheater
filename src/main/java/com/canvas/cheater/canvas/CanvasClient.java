@@ -21,7 +21,7 @@ public class CanvasClient {
     }
 
     public Course[] getAllCourses(){
-        Course[] courses = template.getForObject(url+"courses"+api_token, Course[].class);
+        Course[] courses = template.getForObject(url+"courses"+api_token+"&enrollment_state=active", Course[].class);
         return courses;
     }
 }

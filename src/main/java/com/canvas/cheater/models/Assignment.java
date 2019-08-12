@@ -180,7 +180,6 @@ public class Assignment implements Serializable {
     public void setSubmissions_download_url(String submissions_download_url) {
         this.submissions_download_url = submissions_download_url;
     }
-
     public long getAssignment_group_id() {
         return assignment_group_id;
     }

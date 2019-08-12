@@ -1,4 +1,10 @@
 .coursesWrapper{
-    width: 40%;
+    width: 35%;
     margin: 20px;
+    float:left;
+}
+
+.assignmentWrapper{
+    width: 60%;
+    float: left;
 }

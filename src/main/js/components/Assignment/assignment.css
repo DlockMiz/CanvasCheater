@@ -1,0 +1,15 @@
+.assignmentBox{
+    width: 30%;
+    min-height: 275px;
+    display: block;
+    float: left;
+    margin: 10px;
+}
+
+.assignmentDescription{
+    height: 125px;
+}
+
+.assignmentBody{
+
+}
