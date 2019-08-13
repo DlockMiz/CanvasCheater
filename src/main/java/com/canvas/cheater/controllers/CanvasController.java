@@ -28,10 +28,20 @@ public class CanvasController {
     }
 
     @GetMapping("/getSavedAssignments")
-    public SavedAssignment test(){
-        SavedAssignment ass = new SavedAssignment();
-        repo.save(ass);
-        return ass;
+    public Iterable<SavedAssignment> getSavedAssignments(){
+         Iterable <SavedAssignment> assignments = repo.findAll();
+         return assignments;
+    }
+
+    @PostMapping("/saveAssignment")
+    public SavedAssignment saveAssignment(@RequestBody SavedAssignment assignment){
+        repo.save(assignment);
+        return assignment;
+    }
+
+    @GetMapping("/delete")
+    public void delete(){
+        repo.deleteAll();
     }
 
 }

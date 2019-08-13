@@ -13,11 +13,17 @@ class Classes extends Component{
         keys: 0,
         activeCourse: {id:null},
         selectedCourse: null,
+        savedAssignments: null,
         isLoadingAssignments: false
     }
 
     componentDidMount(){
         this.getCourses()
+        this.getSavedAssignments()
+    }
+
+    delete = () =>{
+        axios.get("/delete")
     }
 
     parseData= (data) =>{
@@ -37,6 +43,13 @@ class Classes extends Component{
         axios.post('/getAssignments', course, {transformResponse:[data=>data]}).then(response =>{
             let parsed_assignments = this.parseData(response.data)
             this.setState({assignments: parsed_assignments, isLoadingAssignments: false})
+        })
+    }
+
+    getSavedAssignments = () =>{
+        var that = this
+        axios.get("/getSavedAssignments").then(function(response){
+            that.setState({savedAssignments: response.data})
         })
     }
 
@@ -61,10 +74,11 @@ class Classes extends Component{
                     <Spinner style={this.state.isLoadingAssignments ? {display: "block"}:{display: "none"}} animation="grow" />
                     <div style={!this.state.isLoadingAssignments ? {display: "block"}:{display: "none"}}>
                         {this.state.assignments.map(assignment =>
-                            <Assignment key={this.state.keys+=1} assignment={assignment} course={this.state.activeCourse}></Assignment>
+                            <Assignment key={this.state.keys+=1} saved={this.state.savedAssignments} assignment={assignment} course={this.state.activeCourse}></Assignment>
                         )}
                     </div>
                 </div>
+                <button onClick={this.delete}>del</button>
             </div>
         )
     }

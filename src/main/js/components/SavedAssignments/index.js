@@ -1,17 +1,29 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Assignment from "../Assignment";
 
 class SavedAssignments extends Component{
+    state = {
+        assignments: []
+    }
+
     componentDidMount() {
+        this.getSavedAssignments()
+    }
+
+    getSavedAssignments = () =>{
+        var that = this
         axios.get('/getSavedAssignments').then(function(response){
-            console.log(response.data)
+            that.setState({assignments: response.data})
         })
     }
 
     render(){
         return(
             <div>
-                test
+            {this.state.assignments.map(assignment =>
+                    assignment.name
+            )}
             </div>
         )
     }

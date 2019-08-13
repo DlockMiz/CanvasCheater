@@ -1,13 +1,17 @@
 import React, {Component} from 'react'
 import {Card, Button, Alert} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import axios from 'axios'
 import './assignment.css'
 
 class Assignment extends Component{
 
+    state = {
+        showSaveButton: false
+    }
+
     componentDidMount() {
-        // console.log(new Date(this.props.assignment.due_at).toString())
-        // console.log(this.props.assignment)
+        this.checkSaved()
     }
 
     checkDueSoon = () => {
@@ -17,15 +21,26 @@ class Assignment extends Component{
         let days = (ms / (1000 * 60 * 60 * 24))
         return days <= 3 ? true : false
     }
+    checkSaved = () =>{
+        var that = this
+        this.props.saved.forEach(function(saved_assignment){
+            if(saved_assignment.id == that.props.assignment.id){
+                that.setState({showSaveButton: true})
+            }
+        })
+    }
 
     saveAssignment = () =>{
+        var that = this
         var postData = {
             id: this.props.assignment.id,
             name: this.props.assignment.name,
             due_at: this.props.assignment.due_at,
             course: this.props.course.name
         }
-        console.log(postData)
+        axios.post("/saveAssignment", postData).then(function(response){
+            that.setState({showSaveButton: true})
+        })
     }
 
 
@@ -38,7 +53,7 @@ class Assignment extends Component{
                     <Card.Text className="assignmentDescription">
                         Due on: {new Date(this.props.assignment.due_at).toDateString()}
                     </Card.Text>
-                    <Button variant="success" style={{float: "left"}} onClick={this.saveAssignment}><FontAwesomeIcon icon="plus"/></Button>
+                    <Button variant="success" disabled={this.state.showSaveButton} style={{float: "left"}} onClick={this.saveAssignment}><FontAwesomeIcon icon="plus"/></Button>
                     <Alert variant="danger" show={this.checkDueSoon()} style={{width: "65%", float: "right", textAlign: "center"}}>Due Soon</Alert>
                 </Card.Body>
             </Card>
