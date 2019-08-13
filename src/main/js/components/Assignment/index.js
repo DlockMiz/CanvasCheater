@@ -31,8 +31,8 @@ class Assignment extends Component{
     }
 
     saveAssignment = () =>{
-        var that = this
-        var postData = {
+        let that = this
+        let postData = {
             id: this.props.assignment.id,
             name: this.props.assignment.name,
             due_at: this.props.assignment.due_at,

@@ -8,3 +8,26 @@
     width: 60%;
     float: left;
 }
+
+.progressBar{
+    display: block;
+    width: 25%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.hidden{
+    display: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .assignmentWrapper{
+        width: 95%;
+        float: left;
+    }
+    .coursesWrapper{
+        width: 90%;
+        margin: 20px;
+        float:left;
+    }
+}

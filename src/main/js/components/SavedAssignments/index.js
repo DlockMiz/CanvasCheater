@@ -12,7 +12,7 @@ class SavedAssignments extends Component{
     }
 
     getSavedAssignments = () =>{
-        var that = this
+        let that = this
         axios.get('/getSavedAssignments').then(function(response){
             that.setState({assignments: response.data})
         })
@@ -21,7 +21,8 @@ class SavedAssignments extends Component{
     render(){
         return(
             <div>
-            {this.state.assignments.map(assignment =>
+                <button onClick={this.delete}>del</button>
+                {this.state.assignments.map(assignment =>
                     assignment.name
             )}
             </div>

@@ -14,7 +14,9 @@ class Classes extends Component{
         activeCourse: {id:null},
         selectedCourse: null,
         savedAssignments: null,
-        isLoadingAssignments: false
+        isLoadingCourses: false,
+        isLoadingAssignments: false,
+        loadingProgress: 10
     }
 
     componentDidMount(){
@@ -27,6 +29,7 @@ class Classes extends Component{
     }
 
     parseData= (data) =>{
+        var that = this
         let parsed = []
         let json = JSONbig.parse(data)
         json.forEach(function(obj){
@@ -54,9 +57,10 @@ class Classes extends Component{
     }
 
     getCourses = () =>{
+        this.setState({isLoadingCourses: true})
         axios.get("/getCourses", {transformResponse:[data=>data]}).then(response =>{
             let parsed_courses = this.parseData(response.data)
-            this.setState({all_courses: parsed_courses})
+            this.setState({all_courses: parsed_courses, isLoadingCourses: false})
         })
     }
 
@@ -65,20 +69,20 @@ class Classes extends Component{
             <div className="pageWrapper">
                 <div className="coursesWrapper">
                     <ListGroup>
-                    {this.state.all_courses.map( course =>
+                        <Spinner style={this.state.isLoadingCourses ? {display: "block", margin: "auto"}:{display: "none"}} animation="grow" />
+                        {this.state.all_courses.map( course =>
                         <ListGroup.Item className={this.state.activeCourse.id == course.id ? 'active' : null} onClick={() => this.loadAssignments(course)} key={this.state.keys +=1}>{course.name}</ListGroup.Item>
                     )}
                     </ListGroup>
                 </div>
                 <div className="assignmentWrapper">
-                    <Spinner style={this.state.isLoadingAssignments ? {display: "block"}:{display: "none"}} animation="grow" />
+                    <Spinner style={this.state.isLoadingAssignments ? {display: "block", margin: "auto"}:{display: "none"}} animation="grow" />
                     <div style={!this.state.isLoadingAssignments ? {display: "block"}:{display: "none"}}>
                         {this.state.assignments.map(assignment =>
                             <Assignment key={this.state.keys+=1} saved={this.state.savedAssignments} assignment={assignment} course={this.state.activeCourse}></Assignment>
                         )}
                     </div>
                 </div>
-                <button onClick={this.delete}>del</button>
             </div>
         )
     }
